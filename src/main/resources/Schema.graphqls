@@ -1,0 +1,34 @@
+type UserRest{
+    id: ID!,
+    userId: String,
+    firstName: String,
+    lastName: String,
+    email: String
+}
+
+type OperationStatus{
+    operationResult: String,
+    operationName: String
+}
+
+input UserDetails{
+    firstName: String,
+    lastName: String,
+    email: String,
+    password: String
+}
+
+type Query{
+    users(count: Int): [UserRest]
+    user(userId: String): UserRest
+}
+
+type Mutation {
+    createUser(input: UserDetails): UserRest
+    updateUser(userId: String, input: UserDetails): UserRest
+    deleteUser(userId: String) : OperationStatus
+}
+
+type Subscription{
+    users : [UserRest]
+}
